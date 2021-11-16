@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { _getUsers } from "../_DATA";
 
-function Login() {
+function Login({changeAuthUser}) {
+  
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -24,9 +25,10 @@ function Login() {
     <div>
       <h1> Login Page </h1>
       <h4>Username</h4>
-      <select>
+      <select onChange={(e) => changeAuthUser(e)}>
+        <option value="no_user" defaultValue>...</option>
         {users &&
-          users.map((user) => <option key={user.id}>{user.name}</option>)}
+          users.map((user) => <option value={user.id} key={user.id}>{user.name}</option>)}
       </select>
     </div>
   );

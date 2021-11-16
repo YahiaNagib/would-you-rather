@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function NavBar() {
+function NavBar(props) {
+  const {authUser} = props;
   return (
     <div className="nav-bar">
       <ul>
@@ -15,10 +16,17 @@ function NavBar() {
           <Link to="/board"> Leader Board </Link>
         </li>
       </ul>
-      <div className="profile">
-        <div> Image </div>
-        <Link to="/login"> Logout </Link>
-      </div>
+      {authUser ? (
+        <div className="profile">
+          <img src={authUser.avatarURL} alt="pic"/>
+          <span> Hello {authUser.name} </span>
+          <Link to="/login"> Logout </Link>
+        </div>
+      ) : (
+        <div>
+          <Link to="/login"> Login </Link>
+        </div>
+      )}
     </div>
   );
 }

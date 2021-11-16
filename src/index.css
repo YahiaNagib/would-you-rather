@@ -28,3 +28,8 @@ ul {
   justify-content: space-evenly;
   padding: 0;
 }
+
+img {
+  border-radius: 50%;
+  width: 20%;
+}
