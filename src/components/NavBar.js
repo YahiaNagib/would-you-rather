@@ -9,7 +9,7 @@ function NavBar() {
           <Link to="/"> Home </Link>
         </li>
         <li>
-          <Link to="/questions"> Questions </Link>
+          <Link to="/new"> New Question </Link>
         </li>
         <li>
           <Link to="/board"> Leader Board </Link>
@@ -17,7 +17,7 @@ function NavBar() {
       </ul>
       <div className="profile">
         <div> Image </div>
-        <Link to="/logout"> Logout </Link>
+        <Link to="/login"> Logout </Link>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 
 
 
-function NewQuestions() {
+function NewQuestion() {
     return (
       <div>
         <h1> NewQuestions Page </h1>
@@ -9,4 +9,4 @@ function NewQuestions() {
     );
   }
   
-  export default NewQuestions;
+  export default NewQuestion;
