@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { _getUsers } from "../_DATA";
+import { _getUsers } from "../utils/_DATA";
 
 function Login({changeAuthUser}) {
   

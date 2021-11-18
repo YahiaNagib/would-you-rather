@@ -6,7 +6,7 @@ import NewQuestion from "./main_pages/NewQuestion";
 import LeaderBoard from "./main_pages/LeaderBoard";
 import Login from "./main_pages/Login";
 import { useEffect, useState } from "react";
-import { _getUsers } from "./_DATA";
+import { _getUsers } from "./utils/_DATA";
 
 function App() {
 
