@@ -1,20 +1,24 @@
 import { connect } from "react-redux";
 
-function Question({ question, users, authUser }) {
+function Question({ question, users, showQuestion, id }) {
   const questionAuthor = users[question.author];
 
-  const getStyle = () => {
+  // const getStyle = () => {
+  //   // if (question.author === authUser) return {backgroundColor: 'yellow'}
 
-    if (question.author === authUser) return {backgroundColor: 'yellow'}
-    const isAnswered =
-      question.optionOne.votes.includes(authUser) ||
-      question.optionTwo.votes.includes(authUser);
-    return {
-      backgroundColor: isAnswered ? "green" : "red",
-    };
-  };
+  //   const isAnswered =
+  //     question.optionOne.votes.includes(authUser) ||
+  //     question.optionTwo.votes.includes(authUser);
+  //   return {
+  //     display: isAnswered === displayAnswered ? "relative" : "none",
+  //     backgroundColor: isAnswered ? "green" : "red"
+  //   };
+  // };
+
+  console.log(showQuestion(id));
+
   return (
-    <div style={getStyle()} className="question">
+    <div style={{display: showQuestion(id) ? 'block' : 'none'}} className="question">
       <h3>{questionAuthor && questionAuthor.name} asked</h3>
       <h4>
         {question.optionOne.text} OR {question.optionTwo.text}
@@ -23,7 +27,7 @@ function Question({ question, users, authUser }) {
   );
 }
 
-function mapStateToProps({ authUser, questions, users }, { id }) {
+function mapStateToProps({ authUser, questions, users }, { id, showQuestion }) {
   const question = questions[id];
   return {
     authUser,

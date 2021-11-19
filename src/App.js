@@ -37,7 +37,6 @@ class App extends Component {
 
   render() {
     const { authUser, users } = this.props;
-    console.log(this.props);
     
     // const changeAuthUser = (e) => {
     //   if (e.target.value === "no_user") return;
