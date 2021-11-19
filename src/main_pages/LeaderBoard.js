@@ -1,7 +1,15 @@
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-function LeaderBoard({ users }) {
+function LeaderBoard({ users, authUser }) {
   let usersCount = [];
+
+  if (!authUser)
+    return (
+      <div>
+        <Redirect to="/login" />
+      </div>
+    );
 
   for (const id in users) {
     usersCount.push({
@@ -41,9 +49,10 @@ function LeaderBoard({ users }) {
   );
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authUser }) {
   return {
     users,
+    authUser
   };
 }
 export default connect(mapStateToProps)(LeaderBoard);
