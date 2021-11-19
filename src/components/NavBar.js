@@ -7,13 +7,13 @@ function NavBar(props) {
     <div className="nav-bar">
       <ul>
         <li>
-          <Link to="/"> Home </Link>
+          <Link className='text-link' to="/"> Home </Link>
         </li>
         <li>
-          <Link to="/new"> New Question </Link>
+          <Link className='text-link' to="/new"> New Question </Link>
         </li>
         <li>
-          <Link to="/board"> Leader Board </Link>
+          <Link className='text-link' to="/board"> Leader Board </Link>
         </li>
       </ul>
       {authUser ? (
