@@ -11,7 +11,8 @@ function Home({ ids, authUser, questions }) {
   };
 
   const isAnswered = (id) => {
-    return (
+    console.log(questions[id]);
+    return ( 
       (questions[id].optionOne.votes.includes(authUser) ||
       questions[id].optionTwo.votes.includes(authUser)) === displayAnswered
     );

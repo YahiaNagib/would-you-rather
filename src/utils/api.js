@@ -14,7 +14,7 @@ import {
     }))
   }
 
-  export function saveQuestion(optionOne, optionTwo, author) {
-    return _saveQuestion({optionOne, optionTwo, author});
+  export function saveQuestion(optionOneText, optionTwoText, author) {
+    return _saveQuestion({optionOneText, optionTwoText, author});
   }
   

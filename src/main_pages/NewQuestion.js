@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { handleAddQuestion } from "../Actions/questions.js";
 
-function NewQuestion({ authUser }) {
+function NewQuestion({ dispatch, authUser }) {
   const [firstOption, setFirstOption] = useState("");
   const [secondOption, setSecondOption] = useState("");
 
@@ -11,6 +11,12 @@ function NewQuestion({ authUser }) {
     if (option === 1) setFirstOption(e.target.value);
     if (option === 2) setSecondOption(e.target.value);
   };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(handleAddQuestion(firstOption, secondOption, authUser));
+    return <Redirect to="/"/>
+  }
 
   if (!authUser)
     return (
@@ -31,7 +37,7 @@ function NewQuestion({ authUser }) {
         placeholder="Second Option"
       ></input>
       <br />
-      <button> Submit! </button>
+      <button onClick={(e) => handleClick(e)}> Submit! </button>
     </div>
   );
 }

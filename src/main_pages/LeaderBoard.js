@@ -20,8 +20,6 @@ function LeaderBoard({ users, authUser }) {
     });
   }
 
-  console.log(usersCount);
-  
   return (
     <div>
       <h1> LeaderBoard Page </h1>
