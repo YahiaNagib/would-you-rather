@@ -39,11 +39,11 @@ class App extends Component {
     const { authUser, users } = this.props;
     console.log(this.props);
     
-    const changeAuthUser = (e) => {
-      if (e.target.value === "no_user") return;
-      const id = e.target.value;
-      this.setState({ authUser: users[id] });
-    };
+    // const changeAuthUser = (e) => {
+    //   if (e.target.value === "no_user") return;
+    //   const id = e.target.value;
+    //   this.setState({ authUser: users[id] });
+    // };
 
     return (
       <div className="App">
@@ -54,7 +54,7 @@ class App extends Component {
             exact
             path="/login"
             element={
-              <Login users={users} changeAuthUser={changeAuthUser} />
+              <Login users={users} />
             }
           />
           <Route exact path="/new" element={<NewQuestion />} />

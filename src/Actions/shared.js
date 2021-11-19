@@ -3,7 +3,7 @@ import { receiveQuestions } from "./questions";
 import { receiveUsers } from "./users";
 import { setAuthUser } from "./authUser";
 
-const authId = 'sarahedo';
+const authId = '';
 
 export function handleInitialData() {
   return (dispatch) => {
