@@ -48,8 +48,19 @@ img {
   width: 15%;
 }
 
-.question {
+.question{
   border: 1px solid #000;
+  margin: 5px
+}
+
+.user-data {
+  border: 1px solid #000;
+  margin: 5px auto;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px
 }
 
 .question-text {

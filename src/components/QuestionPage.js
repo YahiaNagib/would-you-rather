@@ -22,7 +22,10 @@ function QuestionPage({ questionId, authUser, users, question }) {
   const getResults = () => {
     const optionOne = question.optionOne.votes.length;
     const optionTwo = question.optionTwo.votes.length;
-    return (optionOne * 100) / (optionOne + optionTwo);
+    return {
+      count: optionOne + optionTwo,
+      percentage: (optionOne * 100) / (optionOne + optionTwo),
+    };
   };
 
   return (
@@ -39,10 +42,35 @@ function QuestionPage({ questionId, authUser, users, question }) {
           />
 
           <h4>Would you rather?</h4>
-          <h2>
-            {question.optionOne.text} ({getResults()}%)
+          <h4>
+            {" "}
+            Total {getResults().count} polls,
+            {question.optionOne.votes.includes(authUser) ||
+            question.optionTwo.votes.includes(authUser) ? (
+              <div>your answer is in green!</div>
+            ) : (
+              <div>Click on one of the answers to submit!</div>
+            )}
+            
+          </h4>
+          <h2
+            style={{
+              color: question.optionOne.votes.includes(authUser)
+                ? "green"
+                : "black",
+            }}
+          >
+            {question.optionOne.text} ({getResults().percentage}%)
           </h2>
-          <h2>{question.optionTwo.text} ({100 - getResults()}%)</h2>
+          <h2
+            style={{
+              color: question.optionTwo.votes.includes(authUser)
+                ? "green"
+                : "black",
+            }}
+          >
+            {question.optionTwo.text} ({100 - getResults().percentage}%)
+          </h2>
         </div>
       )}
     </div>
