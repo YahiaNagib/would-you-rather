@@ -18,6 +18,12 @@ export function addQuestion(question) {
   };
 }
 
+export function addAnswer() {
+  return {
+    type: ADD_ANSWER,
+  };
+}
+
 export function handleAddQuestion(optionOne, optionTwo, author) {
   return (dispatch) => {
     return saveQuestion(optionOne, optionTwo, author).then((question) => {
@@ -30,8 +36,8 @@ export function handleAddQuestion(optionOne, optionTwo, author) {
 export function handleQuestionAnswer(authedUser, qid, answer) {
   return (dispatch) => {
     return saveQuestionAnswer(authedUser, qid, answer)
-    // .then(() => {
-    //   dispatch(addQuestion());
-    // });
+    .then(() => {
+      dispatch(addAnswer());
+    });
   };
 }

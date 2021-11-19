@@ -33,10 +33,14 @@ function QuestionPage({ dispatch, authUser, users, question }) {
   };
 
   const handleClick = (optionNumber) => {
-    const { text: clickedOption } =
-      optionNumber === 1 ? question.optionOne : question.optionTwo;
-    dispatch(handleQuestionAnswer(authUser, question.id, clickedOption));
-    console.log(clickedOption);
+    if (
+      question.optionOne.votes.includes(authUser) ||
+      question.optionTwo.votes.includes(authUser)
+    )
+      return;
+    const option = optionNumber === 1 ? "optionOne" : "optionTwo";
+    dispatch(handleQuestionAnswer(authUser, question.id, option));
+    console.log(users[authUser]);
   };
 
   return (
