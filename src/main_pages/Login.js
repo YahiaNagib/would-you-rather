@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { setAuthUser } from "../Actions/authUser";
-import { Navigate } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 function Login({ users, authUser, dispatch }) {
   // To change the object to an array
@@ -19,7 +19,7 @@ function Login({ users, authUser, dispatch }) {
   return (
     <div>
       {authUser ? (
-        <Navigate to="/" />
+        <Redirect to="/" />
       ) : (
         <div>
           <h1> Login Page </h1>

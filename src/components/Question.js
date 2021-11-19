@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 function Question({ question, users, showQuestion, id }) {
   const questionAuthor = users[question.author];
@@ -15,14 +16,17 @@ function Question({ question, users, showQuestion, id }) {
   //   };
   // };
 
-  console.log(showQuestion(id));
-
   return (
-    <div style={{display: showQuestion(id) ? 'block' : 'none'}} className="question">
+    <div
+      style={{ display: showQuestion(id) ? "block" : "none" }}
+      className="question"
+    >
       <h3>{questionAuthor && questionAuthor.name} asked</h3>
-      <h4>
-        {question.optionOne.text} OR {question.optionTwo.text}
-      </h4>
+      <Link to={`/questions/${id}`} className="text-link">
+        <h4 className="question-text">
+          {question.optionOne.text} OR {question.optionTwo.text}
+        </h4>
+      </Link>
     </div>
   );
 }

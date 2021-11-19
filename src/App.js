@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./main_pages/Home";
 import NewQuestion from "./main_pages/NewQuestion";
@@ -10,6 +10,8 @@ import { _getUsers } from "./utils/_DATA";
 
 import { connect } from "react-redux";
 import { handleInitialData } from "./Actions/shared";
+import QuestionPage from "./components/QuestionPage";
+import NotFound from "./components/NotFound";
 
 class App extends Component {
   state = {
@@ -37,7 +39,7 @@ class App extends Component {
 
   render() {
     const { authUser, users } = this.props;
-    
+
     // const changeAuthUser = (e) => {
     //   if (e.target.value === "no_user") return;
     //   const id = e.target.value;
@@ -47,18 +49,14 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar authUser={users[authUser]} />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route
-            exact
-            path="/login"
-            element={
-              <Login users={users} />
-            }
-          />
-          <Route exact path="/new" element={<NewQuestion />} />
-          <Route exact path="/board" element={<LeaderBoard />} />
-        </Routes>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" render={() => <Login users={users} />} />
+          <Route exact path="/new" render={() => <NewQuestion />} />
+          <Route exact path="/board" render={() => <LeaderBoard />} />
+          <Route exact path="/questions/:id" render={(props) => <QuestionPage props={props} />} />
+          <Route exact path="/notfound" component={NotFound}/>
+        </Switch>
       </div>
     );
   }

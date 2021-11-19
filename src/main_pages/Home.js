@@ -1,6 +1,6 @@
 import Question from "../components/Question";
 import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useState } from "react";
 
 function Home({ ids, authUser, questions }) {
@@ -20,7 +20,7 @@ function Home({ ids, authUser, questions }) {
   return (
     <div>
       {!authUser ? (
-        <Navigate to="/login" />
+        <Redirect to="/login" />
       ) : (
         <div>
           <h1> Main Questions Page </h1>
@@ -44,7 +44,7 @@ function Home({ ids, authUser, questions }) {
 
 function mapStateToProps({ questions, authUser }) {
   return {
-    ids: Object.keys(questions),
+    ids: Object.keys(questions).sort((a,b) => questions[b].timestamp - questions[a].timestamp),
     authUser,
     questions,
   };

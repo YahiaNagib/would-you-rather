@@ -51,3 +51,7 @@ img {
 .question {
   border: 1px solid #000;
 }
+
+.question-text {
+  cursor: pointer;
+}
