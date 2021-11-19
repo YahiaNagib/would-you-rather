@@ -4,6 +4,8 @@ function Question({ question, users, authUser }) {
   const questionAuthor = users[question.author];
 
   const getStyle = () => {
+
+    if (question.author === authUser) return {backgroundColor: 'yellow'}
     const isAnswered =
       question.optionOne.votes.includes(authUser) ||
       question.optionTwo.votes.includes(authUser);
