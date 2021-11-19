@@ -6,6 +6,11 @@ import { handleAddQuestion } from "../Actions/questions.js";
 function NewQuestion({ dispatch, authUser }) {
   const [firstOption, setFirstOption] = useState("");
   const [secondOption, setSecondOption] = useState("");
+  const [toHome, setToHome] = useState(false);
+
+  if (toHome === true) {
+    return <Redirect to='/' />
+  }
 
   const handleOptionChange = (e, option) => {
     if (option === 1) setFirstOption(e.target.value);
@@ -15,7 +20,7 @@ function NewQuestion({ dispatch, authUser }) {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(handleAddQuestion(firstOption, secondOption, authUser));
-    return <Redirect to="/"/>
+    setToHome(true);
   }
 
   if (!authUser)

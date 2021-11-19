@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { handleQuestionAnswer } from "../Actions/questions";
 
-function QuestionPage({ questionId, authUser, users, question }) {
+function QuestionPage({ dispatch, authUser, users, question }) {
   if (!authUser)
     return (
       <div>
@@ -22,10 +23,20 @@ function QuestionPage({ questionId, authUser, users, question }) {
   const getResults = () => {
     const optionOne = question.optionOne.votes.length;
     const optionTwo = question.optionTwo.votes.length;
+
+    let percentage = (optionOne * 100) / (optionOne + optionTwo);
+
     return {
       count: optionOne + optionTwo,
-      percentage: (optionOne * 100) / (optionOne + optionTwo),
+      percentage,
     };
+  };
+
+  const handleClick = (optionNumber) => {
+    const { text: clickedOption } =
+      optionNumber === 1 ? question.optionOne : question.optionTwo;
+    dispatch(handleQuestionAnswer(authUser, question.id, clickedOption));
+    console.log(clickedOption);
   };
 
   return (
@@ -51,7 +62,6 @@ function QuestionPage({ questionId, authUser, users, question }) {
             ) : (
               <div>Click on one of the answers to submit!</div>
             )}
-            
           </h4>
           <h2
             style={{
@@ -60,7 +70,10 @@ function QuestionPage({ questionId, authUser, users, question }) {
                 : "black",
             }}
           >
-            {question.optionOne.text} ({getResults().percentage}%)
+            <span style={{ cursor: "pointer" }} onClick={() => handleClick(1)}>
+              {question.optionOne.text}{" "}
+            </span>{" "}
+            ({getResults().percentage ? getResults().percentage : 0}%)
           </h2>
           <h2
             style={{
@@ -69,7 +82,11 @@ function QuestionPage({ questionId, authUser, users, question }) {
                 : "black",
             }}
           >
-            {question.optionTwo.text} ({100 - getResults().percentage}%)
+            <span style={{ cursor: "pointer" }} onClick={() => handleClick(2)}>
+              {question.optionTwo.text}
+            </span>{" "}
+            ({100 - getResults().percentage ? 100 - getResults().percentage : 0}
+            %)
           </h2>
         </div>
       )}

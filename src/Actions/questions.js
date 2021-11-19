@@ -1,7 +1,8 @@
-import { saveQuestion } from "../utils/api.js";
+import { saveQuestion, saveQuestionAnswer } from "../utils/api.js";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
+export const ADD_ANSWER = "ADD_ANSWER";
 
 export function receiveQuestions(questions) {
   return {
@@ -23,5 +24,14 @@ export function handleAddQuestion(optionOne, optionTwo, author) {
       console.log(question);
       dispatch(addQuestion(question));
     });
+  };
+}
+
+export function handleQuestionAnswer(authedUser, qid, answer) {
+  return (dispatch) => {
+    return saveQuestionAnswer(authedUser, qid, answer)
+    // .then(() => {
+    //   dispatch(addQuestion());
+    // });
   };
 }
